@@ -1,6 +1,6 @@
 <style>
-/* 1. IMPORTAÇÃO DE FONTES PREMIUM */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;600;700&display=swap');
+/* 1. IMPORTAÇÃO DE FONTE (Montserrat - Única solicitada) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
 /* 2. VARIÁVEIS DE DESIGN */
 :root {
@@ -10,14 +10,15 @@
     --c-text-dark: #121212;
     --c-bg-off: #F4F1EA;        /* Off-white Papel */
     --c-white: #ffffff;
+    --c-nature-green: #2C5E38;  /* Verde Folha para ícones/detalhes */
 }
 
 /* 3. RESET & BASE */
 .qac-wrapper {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Fonte Global Alterada */
     color: var(--c-text-dark);
     background-color: var(--c-bg-off);
-    line-height: 1.7;
+    line-height: 1.6;
     width: 100%;
     overflow-x: hidden;
     margin: 0; padding: 0; box-sizing: border-box;
@@ -25,12 +26,13 @@
 .qac-wrapper *, .qac-wrapper *::before, .qac-wrapper *::after { box-sizing: border-box; }
 
 /* Tipografia */
-.qac-wrapper h1, .qac-wrapper h2, .qac-wrapper h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
+.qac-wrapper h1, .qac-wrapper h2, .qac-wrapper h3, 
+.qac-wrapper h4, .qac-wrapper h5, .qac-wrapper h6 {
+    font-family: 'Montserrat', sans-serif; /* Fonte Títulos Alterada */
+    font-weight: 700;
     color: var(--c-primary);
     margin: 0;
-    line-height: 1.15;
+    line-height: 1.2;
 }
 
 .qac-container {
@@ -43,31 +45,33 @@
 
 /* 4. CABEÇALHO (STICKY) */
 .qac-header {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 9990; /* Z-index menor que o modal */
-    padding: 20px 0; transition: all 0.4s ease;
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 9990;
+    padding: 15px 0; transition: all 0.4s ease;
     background: transparent; border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .qac-header.scrolled {
-    background: var(--c-primary); padding: 15px 0;
+    background: var(--c-primary); padding: 10px 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-bottom: none;
 }
 .qac-header-inner { display: flex; align-items: center; justify-content: space-between; }
 
-.qac-logo {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
-    font-weight: 700; color: white; text-transform: uppercase;
-    letter-spacing: 2px; text-decoration: none;
+/* Logo Imagem */
+.qac-logo-img {
+    height: 50px; /* Ajuste de altura para caber no header */
+    width: auto;
+    display: block;
+    transition: 0.3s;
 }
 
 .qac-nav-desktop { display: flex; gap: 35px; list-style: none; margin: 0; padding: 0; }
 .qac-nav-link {
-    font-family: 'Manrope', sans-serif; font-size: 0.85rem;
+    font-size: 0.85rem;
     color: rgba(255,255,255,0.9); text-decoration: none;
     text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
     transition: 0.3s; position: relative;
 }
 .qac-nav-link::after {
-    content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 1px;
+    content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px;
     background: var(--c-secondary); transition: 0.3s;
 }
 .qac-nav-link:hover::after { width: 100%; }
@@ -76,47 +80,44 @@
     padding: 10px 25px; border: 1px solid var(--c-secondary);
     color: var(--c-secondary); font-size: 0.8rem; font-weight: 700;
     text-transform: uppercase; text-decoration: none; letter-spacing: 1px;
-    transition: 0.3s; cursor: pointer;
+    transition: 0.3s; cursor: pointer; border-radius: 4px;
 }
 .qac-btn-header:hover { background: var(--c-secondary); color: var(--c-primary); }
 
 .qac-mobile-toggle { display: none; background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
-/* 5. HERO */
+/* 5. HERO (Fundo Sólido e Textos Novos) */
 .qac-hero {
     height: 100vh; min-height: 650px; position: relative;
     display: flex; align-items: center; justify-content: center; overflow: hidden;
+    background-color: #2E4A33; /* Fundo Sólido Sustentável solicitado */
 }
-.qac-hero-bg {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('https://quemamacuidafsa.com/wp-content/uploads/2026/02/22-scaled-e1770174088270.png');
-    background-size: cover; background-position: center; z-index: 1;
-    animation: slowZoom 20s infinite alternate;
+
+/* Detalhe visual sutil (folha/forma orgânica) no fundo */
+.qac-hero::before {
+    content: ''; position: absolute; top: -10%; right: -10%; width: 50%; height: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    border-radius: 50%; z-index: 1; pointer-events: none;
 }
-@keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
-.qac-hero-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(26,46,26,0.4) 0%, rgba(26,46,26,0.9) 100%);
-    z-index: 2; backdrop-filter: blur(2px);
-}
+
 .qac-hero-content {
     position: relative; z-index: 3; text-align: center;
     max-width: 900px; color: var(--c-white); padding-top: 60px;
 }
 .qac-title-display {
-    font-size: 3.5rem; margin-bottom: 25px; letter-spacing: -1px;
-    text-transform: uppercase; text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-size: 3rem; margin-bottom: 25px; letter-spacing: -0.5px;
+    text-transform: uppercase; font-weight: 800;
 }
 .qac-subtitle-display {
-    font-size: 1.15rem; font-weight: 300; opacity: 0.95;
-    margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto;
+    font-size: 1.1rem; font-weight: 400; opacity: 0.95; line-height: 1.8;
+    margin-bottom: 50px; max-width: 850px; margin-left: auto; margin-right: auto;
 }
 .qac-btn-hero {
     display: inline-block; padding: 18px 45px;
     background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.4);
     color: white; text-transform: uppercase; font-size: 0.9rem;
     font-weight: 700; letter-spacing: 2px; text-decoration: none;
-    transition: all 0.4s ease; backdrop-filter: blur(5px); cursor: pointer;
+    transition: all 0.4s ease; backdrop-filter: blur(5px); cursor: pointer; border-radius: 4px;
 }
 .qac-btn-hero:hover {
     background: var(--c-secondary); border-color: var(--c-secondary);
@@ -126,53 +127,68 @@
 /* 6. VÍDEO & INTRO */
 .qac-section-video { margin-top: -100px; position: relative; z-index: 4; padding-bottom: 60px; }
 .qac-video-frame {
-    box-shadow: 0 30px 60px rgba(0,0,0,0.3); border-radius: 4px;
-    overflow: hidden; border: 1px solid rgba(255,255,255,0.2); background: #000;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15); border-radius: 8px;
+    overflow: hidden; border: 4px solid rgba(255,255,255,1); background: #000;
 }
 .qac-video-frame video { display: block; width: 100%; }
 
 .qac-intro-text { text-align: center; max-width: 900px; margin: 40px auto 0; font-size: 1.15rem; color: #555; }
-.qac-intro-text strong { color: var(--c-primary); }
+.qac-intro-text strong { color: var(--c-nature-green); }
 
 /* 7. SOBRE */
 .qac-section-padding { padding: 100px 0; }
-.qac-bg-white { background-color: white; }
+.qac-bg-white { background-color: white; position: relative; }
+
+/* Detalhe visual sutil */
+.qac-bg-white::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(46, 74, 51, 0.05) 0%, transparent 70%);
+    z-index: 1; pointer-events: none;
+}
+
 .qac-section-label {
     font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px;
     color: var(--c-accent); margin-bottom: 15px; display: block; font-weight: 700;
 }
 .qac-text-body { font-size: 1.1rem; color: #555; text-align: justify; }
-.qac-heading-lg { font-size: 2.5rem; color: var(--c-primary); margin-bottom: 20px; }
+.qac-heading-lg { font-size: 2.2rem; color: var(--c-primary); margin-bottom: 20px; font-weight: 700; }
 
-/* 8. OBJETIVOS */
+/* 8. OBJETIVOS (Com Ícones) */
 .qac-goals-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1px; background: rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.08);
+    gap: 20px;
 }
 .qac-goal-card {
-    background: var(--c-bg-off); padding: 50px 30px; transition: all 0.4s ease;
+    background: var(--c-bg-off); padding: 40px 30px; transition: all 0.4s ease;
+    border-radius: 8px; border: 1px solid rgba(0,0,0,0.03);
+    display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 .qac-goal-card:hover {
-    background: white; transform: scale(1.02);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05); z-index: 2;
+    background: white; transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08); z-index: 2; border-color: transparent;
 }
-.qac-goal-title { font-size: 1.3rem; margin-bottom: 10px; color: var(--c-primary); }
+.qac-goal-icon {
+    width: 50px; height: 50px; margin-bottom: 20px;
+    fill: var(--c-nature-green); /* Cor do ícone */
+}
+.qac-goal-title { font-size: 1.2rem; margin-bottom: 10px; color: var(--c-primary); font-weight: 700; }
 
 /* 9. SUA MARCA (DARK) */
 .qac-section-dark {
     background-color: var(--c-primary); color: white;
-    position: relative; padding: 120px 0;
+    position: relative; padding: 120px 0; overflow: hidden;
 }
+/* Detalhe Visual Sutil (Folhas) */
 .qac-bg-pattern {
-    position: absolute; top: 0; right: 0; width: 60%; height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 20px 20px; opacity: 0.6;
+    position: absolute; top: 0; right: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30c0-5 5-10 10-10s10 5 10 10-5 10-10 10-10-5-10-10z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.6;
 }
 .qac-brand-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
     align-items: center; position: relative; z-index: 2;
 }
-.qac-brand-content h2 { color: white; font-size: 2.8rem; margin-bottom: 20px; }
+.qac-brand-content h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; }
 .qac-brand-content p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; }
 
 /* 10. DISTRIBUIÇÃO */
@@ -180,8 +196,8 @@
     display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: center;
 }
 .qac-big-number {
-    font-size: 5rem; font-family: 'Cormorant Garamond', serif;
-    color: var(--c-secondary); line-height: 1; display: block;
+    font-size: 4rem; font-weight: 800;
+    color: var(--c-secondary); line-height: 1.2; display: block;
 }
 
 /* 11. GALERIA */
@@ -189,7 +205,7 @@
     display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
 }
 .qac-gallery-item {
-    position: relative; overflow: hidden; height: 280px;
+    position: relative; overflow: hidden; height: 280px; border-radius: 6px;
 }
 .qac-gallery-item img, .qac-gallery-item video {
     width: 100%; height: 100%; object-fit: cover;
@@ -204,7 +220,7 @@
 .qac-partners-list { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; margin-top: 30px; }
 .qac-partner-box {
     border: 1px solid #ccc; padding: 15px 30px; color: #999;
-    font-weight: 700; text-transform: uppercase;
+    font-weight: 700; text-transform: uppercase; border-radius: 4px;
 }
 
 /* 13. FOOTER */
@@ -215,18 +231,16 @@
 .qac-footer a { color: #bbb; text-decoration: none; transition: 0.3s; font-weight: 600; }
 .qac-footer a:hover { color: var(--c-secondary); }
 
-/* 14. MODAL POP-UP (AJUSTADO) */
+/* 14. MODAL POP-UP */
 .qac-modal-overlay {
-    display: none; /* Controlado via JS */
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(26,46,26,0.9); backdrop-filter: blur(5px);
-    z-index: 10000; /* Sempre acima de tudo */
-    align-items: center; justify-content: center;
+    z-index: 10000; align-items: center; justify-content: center;
 }
 .qac-modal-box {
     background: var(--c-bg-off); width: 90%; max-width: 500px;
     padding: 50px; position: relative; box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-    animation: fadeInUp 0.5s ease; border-radius: 4px;
+    animation: fadeInUp 0.5s ease; border-radius: 8px;
 }
 @keyframes fadeInUp { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
 
@@ -244,14 +258,14 @@
 .qac-form-input {
     width: 100%; border: none; border-bottom: 2px solid #ccc;
     background: transparent; padding: 10px 0; font-size: 1.1rem;
-    font-family: 'Manrope', sans-serif; transition: 0.3s; color: var(--c-primary);
+    font-family: 'Montserrat', sans-serif; transition: 0.3s; color: var(--c-primary);
 }
 .qac-form-input:focus { outline: none; border-color: var(--c-primary); background: rgba(255,255,255,0.5); }
 
 .qac-btn-submit {
     width: 100%; background: var(--c-primary); color: white; border: none;
     padding: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-    cursor: pointer; margin-top: 15px; transition: 0.3s;
+    cursor: pointer; margin-top: 15px; transition: 0.3s; border-radius: 4px;
 }
 .qac-btn-submit:hover { background: var(--c-accent); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
@@ -262,13 +276,13 @@
     transition: 0.4s ease; display: flex; flex-direction: column; gap: 20px;
 }
 .qac-mobile-menu.active { right: 0; }
-.qac-mobile-link { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+.qac-mobile-link { font-size: 1.5rem; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; font-weight: 700; }
 
 /* RESPONSIVIDADE */
 @media (max-width: 900px) {
     .qac-nav-desktop, .qac-btn-header { display: none; }
     .qac-mobile-toggle { display: block; }
-    .qac-title-display { font-size: 2.5rem; }
+    .qac-title-display { font-size: 2.2rem; }
     .qac-section-video { margin-top: -50px; padding-bottom: 40px; }
     .qac-brand-grid, .qac-dist-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
 }
@@ -278,7 +292,10 @@
 
     <header class="qac-header" id="mainHeader">
         <div class="qac-container qac-header-inner">
-            <a href="#" class="qac-logo">QUEM AMA CUIDA</a>
+            <a href="#">
+                <img src="https://quemamacuidafsa.com/wp-content/uploads/2026/02/QUEM-AMA-CUIDA-PNG-scaled.png" alt="Quem Ama Cuida" class="qac-logo-img">
+            </a>
+            
             <ul class="qac-nav-desktop">
                 <li><a href="#sobre" class="qac-nav-link">Sobre</a></li>
                 <li><a href="#objetivos" class="qac-nav-link">Objetivos</a></li>
@@ -298,11 +315,11 @@
     </div>
 
     <section class="qac-hero">
-        <div class="qac-hero-bg"></div>
-        <div class="qac-hero-overlay"></div>
         <div class="qac-container qac-hero-content">
             <h1 class="qac-title-display">Sustentabilidade, cidadania e compromisso com o futuro!</h1>
-            <p class="qac-subtitle-display">O Projeto Quem Ama Cuida é uma iniciativa da UP7 Comunicação, desenvolvida com foco na conscientização ambiental, na responsabilidade social e na valorização do espaço urbano.</p>
+            
+            <p class="qac-subtitle-display">O Projeto Quem Ama Cuida é uma iniciativa da UP7 Comunicação, desenvolvida com foco na conscientização ambiental, na responsabilidade social e na valorização de uma Feira de Santana melhor para todos.</p>
+            
             <button class="qac-btn-hero qac-trigger-modal">Quero ser parceiro</button>
         </div>
     </section>
@@ -335,19 +352,23 @@
             
             <div class="qac-goals-grid">
                 <div class="qac-goal-card">
-                    <h3 class="qac-goal-title">01. Redução</h3>
+                    <svg class="qac-goal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6h-2c0-2.21-1.79-4-4-4S9 3.79 9 6H7c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm2 12h-2v-4h2v4zm0-6h-2V8h2v2z"/></svg>
+                    <h3 class="qac-goal-title">Redução</h3>
                     <p>Reduzir o lixo nas vias públicas.</p>
                 </div>
                 <div class="qac-goal-card">
-                    <h3 class="qac-goal-title">02. Conscientização</h3>
+                    <svg class="qac-goal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    <h3 class="qac-goal-title">Conscientização</h3>
                     <p>Promover a conscientização ambiental.</p>
                 </div>
                 <div class="qac-goal-card">
-                    <h3 class="qac-goal-title">03. Parcerias</h3>
+                    <svg class="qac-goal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    <h3 class="qac-goal-title">Parcerias</h3>
                     <p>Estimular parcerias público-privadas.</p>
                 </div>
                 <div class="qac-goal-card">
-                    <h3 class="qac-goal-title">04. Qualidade de Vida</h3>
+                    <svg class="qac-goal-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <h3 class="qac-goal-title">Qualidade de Vida</h3>
                     <p>Contribuir para a melhoria da qualidade de vida.</p>
                 </div>
             </div>
@@ -380,8 +401,9 @@
                     <p class="qac-text-body">A distribuição das lixeiras ocorre a partir de estudo técnico das vias públicas, em parceria com a Secretaria de Serviços Públicos do município (Sesp), com instalação média de uma lixeira a cada 150 metros sendo do mesmo lado da via, ou 75 metros uma da outra ficando em lados opostos da via.</p>
                 </div>
                 <div style="text-align:center; background:var(--c-bg-off); padding:40px; border-radius:8px;">
-                    <span class="qac-big-number">1.000+</span>
-                    <p style="margin-top:10px; font-weight:600;">Novas lixeiras no município de Feira de Santana.</p>
+                    <svg style="width:40px; fill:var(--c-primary); margin-bottom:10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14zm-5-8.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    
+                    <p style="font-size: 1.5rem; font-weight: 700; color: var(--c-primary); line-height: 1.3;">Em breve, serão mais de 1000 novas lixeiras por toda Feira de Santana</p>
                 </div>
             </div>
         </div>
@@ -500,26 +522,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.querySelector(".qac-close-btn");
     const form = document.getElementById("qacForm");
 
-    // Abrir modal ao clicar em qualquer botão com a classe .qac-trigger-modal
     btns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            modal.style.display = "flex"; // Usa Flex para centralizar
+            modal.style.display = "flex"; 
         });
     });
 
-    // Fechar no X
     if(closeBtn) closeBtn.onclick = () => { modal.style.display = "none"; }
-    // Fechar clicando fora
     window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
 
-    // Envio do Formulário (Simulação)
+    // Envio do Formulário
     if(form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const nome = document.getElementById('nome').value;
             const empresa = document.getElementById('empresa').value;
-            // Feedback simples
             alert(`Obrigado, ${nome}. \nSua solicitação para a empresa "${empresa}" foi enviada com sucesso!`);
             modal.style.display = "none";
             form.reset();
